@@ -1,0 +1,17 @@
+<div class="hierarchy-row row">
+  <div class="col1 cell-name level-name">
+    <div class="indent">
+      <span class="level collapsed-icon" ng-show="node.children.length > 0 && !showChildren" ng-click="showChildren = !showChildren"></span>
+      <span class="level expanded-icon" ng-show="node.children.length > 0 && showChildren" ng-click="showChildren = !showChildren"></span>
+      <span class="leaf leaf-icon" ng-show="node.children.length == 0"></span>
+      <span class="node">{{ node.name }}</span>
+      <ul class="sub-container apps-container" ui-sortable="sortableOptions" ng-model="node.children" ng-class="{ 'invisible': !showChildren}">
+        <li ng-repeat="node in node.children" ng-init="showChildren = false" class="innerCont node-hierarchy-row" ng-include="'views/partials/_tree.html'"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col2 cell actions">
+    <span class="add-icon" title="Add sub-level"></span>
+    <span class="delete-icon" title="Delete" ng-show="root.children.length == 0"></span>
+  </div>
+</div>
